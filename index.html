@@ -236,6 +236,26 @@
                   <li>
                     <a href="#import-a-list-of-patients" class="toc-h2 toc-link" data-title="Import a list of patients">Import a list of patients</a>
                   </li>
+                  <li>
+                    <a href="#delete-a-given-patient" class="toc-h2 toc-link" data-title="Delete a given patient">Delete a given patient</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#readings" class="toc-h1 toc-link" data-title="Readings">Readings</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-readings" class="toc-h2 toc-link" data-title="Get All Readings">Get All Readings</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-readings-within-a-given-date-range" class="toc-h2 toc-link" data-title="Get All Readings Within a given date range">Get All Readings Within a given date range</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-readings-for-a-given-patient-parameter" class="toc-h2 toc-link" data-title="Get All Readings For a Given Patient Parameter">Get All Readings For a Given Patient Parameter</a>
+                  </li>
+                  <li>
+                    <a href="#import-a-list-of-readings" class="toc-h2 toc-link" data-title="Import a list of readings">Import a list of readings</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -273,7 +293,9 @@ curl <span class="s2">"api_endpoint_here"</span>
 <aside class="notice">
 You must replace <code>123456789</code> with your personal API key.
 </aside>
-<h1 id='patients'>Patients</h1><h2 id='get-all-patients'>Get All patients</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://51.140.9.200/patients"</span>
+<h1 id='patients'>Patients</h1>
+<p>Each patient object is composed of a Unique_ID and then patient parameters specific to your organisation. These parameters can be any value, Booleans are represented by 0 and 1. These paramters are used to sort patients, so it is advisable (though not required) to make sure that all patients have the same paramters in their patient object.</p>
+<h2 id='get-all-patients'>Get All patients</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://51.140.9.200/patients"</span>
   -H <span class="s2">"Authorization: Bearer 123456789"</span>
 </code></pre>
 <blockquote>
@@ -283,9 +305,10 @@ You must replace <code>123456789</code> with your personal API key.
       </span><span class="s2">"patients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
           </span><span class="s2">"Unique_ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"YOUR PATIENT PARAMETERS"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"YOUR PATIENT PARAMETER1"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"YOUR PATIENT PARAMETER2"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR ORG"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"partitionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR ORG-2"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR ORG-2"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1aa6d443-2995-32ee8-59bb-f54ef6386efb"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAJzudVBwJAAAAAAAAAA=="</span><span class="p">,</span><span class="w">
           </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/colls/hBaRFAJzuVBw=/docs/hBRFAJzuVBwJAAAAAAAAAA==/"</span><span class="p">,</span><span class="w">
@@ -295,9 +318,10 @@ You must replace <code>123456789</code> with your personal API key.
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
           </span><span class="s2">"Unique_ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"YOUR PATIENT PARAMETERS"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"YOUR PATIENT PARAMETER1"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"YOUR PATIENT PARAMETER2"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR ORG"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"partitionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR ORG-2"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR ORG-2"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1aa6d443-29d95-3ee8-59bb-f54ef6386efb"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAJzuVdBwJAAAAAAAAAA=="</span><span class="p">,</span><span class="w">
           </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBsRFAA==/colls/hBRFAJzuVBw=/docs/hBRFAJzuVBwJAAAAAAAAAA==/"</span><span class="p">,</span><span class="w">
@@ -310,7 +334,7 @@ You must replace <code>123456789</code> with your personal API key.
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Where YOUR PATIENT PARAMETERS is replaced with your organisation&#39;s specific patient parameters.</p>
+<p>Where YOUR PATIENT PARAMETERS already replaced with your organisation&#39;s specific patient parameters.</p>
 </blockquote>
 
 <p>This endpoint retrieves all patients.</p>
@@ -344,7 +368,7 @@ You must replace <code>123456789</code> with your personal API key.
 <td>The organisation that the patient belongs to</td>
 </tr>
 <tr>
-<td>partitionKey</td>
+<td>unique_key</td>
 <td>A concatenation of the id and organisation</td>
 </tr>
 <tr>
@@ -368,7 +392,7 @@ Remember to send your bearer token!
           </span><span class="s2">"Unique_ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
           </span><span class="s2">"YOUR PATIENT PARAMETERS"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR ORG"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"partitionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR ORG-2"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR ORG-2"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1aad6d443-2995-3ee8-59bb-f54ef6386efb"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAJzduVBwJAAAAAAAAAA=="</span><span class="p">,</span><span class="w">
           </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBsRFAA==/colls/hBRFAJzuVBw=/docs/hBRFAJzuVBwJAAAAAAAAAA==/"</span><span class="p">,</span><span class="w">
@@ -400,7 +424,7 @@ Remember to send your bearer token!
 <td>The organisation that the patient belongs to</td>
 </tr>
 <tr>
-<td>partitionKey</td>
+<td>unique_key</td>
 <td>A concatenation of the id and organisation</td>
 </tr>
 <tr>
@@ -429,13 +453,13 @@ Remember to send your bearer token!
 
 <p>This request will fail with a HTTP 400 error if no id is specified</p>
 <h2 id='import-a-list-of-patients'>Import a list of patients</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://51.140.9.200/patients"</span>
-  -d <span class="s1">'{"Unique_ID": 2, "YOUR PATIENT PARAMETERS":"value",}'</span>
+  -d <span class="s1">'{patients:[{"Unique_ID": 2,  YOUR PATIENT PARAMETERS":"value",}]}'</span>
   -X POST
   -H <span class="s2">"Content-Type: application/json"</span>
   -H <span class="s2">"Authorization: Bearer 123456789"</span>
 </code></pre>
 <blockquote>
-<p>Where YOUR PATIENT PARAMETERS is replaced with your organisation&#39;s specific patient parameters.</p>
+<p>Where YOUR PATIENT PARAMETERs is replaced with your organisation&#39;s specific patient parameter.</p>
 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -457,6 +481,10 @@ Remember to send your bearer token!
 <td>message</td>
 <td>success or error message</td>
 </tr>
+<tr>
+<td>skipped</td>
+<td>An array of Unique_ID&#39;s which already exist in the database, and were skipped.</td>
+</tr>
 </tbody></table>
 <h3 id='query-body-format'>Query Body Format</h3>
 <table><thead>
@@ -468,14 +496,789 @@ Remember to send your bearer token!
 </tr>
 </thead><tbody>
 <tr>
-<td>Unique_ID</td>
+<td>patients</td>
 <td>none</td>
-<td>a patients un</td>
+<td>a list of patient objects</td>
 <td><strong>yes</strong></td>
 </tr>
 </tbody></table>
 
 <p>Unique identifiers which already exist in the database will be ignored on import.</p>
+<h3 id='patient-object-format'>Patient Object format</h3>
+<p>The list of patients should be structured like This</p>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">{</span><span class="s2">"patients"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"Unique_ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"YOUR PATIENT PARAMETER1"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"YOUR PATIENT PARAMETER2"</span><span class="p">:</span><span class="s2">"value"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"Unique_ID"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"YOUR PATIENT PARAMETER1"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"YOUR PATIENT PARAMETER2"</span><span class="p">:</span><span class="s2">"value"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Where YOUR PATIENT PARATERs are replaced with your organisation&#39;s specefic patient paramters.</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Unique_ID</td>
+<td>none</td>
+<td>a patient&#39;s unique identifier</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr>
+<td>YOUR_PATIENT_PARAMETER</td>
+<td>none</td>
+<td>replace YOUR_PATIENT_PARAMETER with any string key. This must be an integer value, use 0 or 1 for boolean values. There can be an unlimited number of these.</td>
+<td><strong>no</strong></td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-given-patient'>Delete a given patient</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://51.140.9.200/patient"</span>
+  -d <span class="s1">'{"id": 2}'</span>
+  -X DELETE
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: Bearer 123456789"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a patient and all of its associated readings given a Unique_ID</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>DELETE http://51.140.9.200/patient</code></p>
+<h3 id='return-object-4'>Return Object</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td>success or error message</td>
+</tr>
+</tbody></table>
+<h3 id='query-body-format-2'>Query Body Format</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>none</td>
+<td>a patients unique identifier</td>
+<td><strong>yes</strong></td>
+</tr>
+</tbody></table>
+<h1 id='readings'>Readings</h1>
+<p>A reading is composed of a patient_id, corresponding to a patients Unique_ID, a date which should be a string in YYYY-MM-DD format, and then whatever reading parameters are specific to your organisation. The parameter keys should be consistent over all readings. Readings must be unique over date and patient_id (two readings cannot have the same date and patient_id).</p>
+<h2 id='get-all-readings'>Get All Readings</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://51.140.9.200/readings"</span>
+  -H <span class="s2">"Authorization: Bearer 123456789"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"patients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"readings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"YOUR READING PARAMTER1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"YOUR READING PARAMTER2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-28"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"patient_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"days_before"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your organisation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10-2017-08-28-yourorganisation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"231d7f988-8fa2-7a08-dc0f-d82150868cb1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAdLAtcJUfAAAAAA2AAAAA=="</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/colls/hBRsFALAtcJU=/docs/hsBRFALAtcJUfAAAdAAAAAAA==/"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">00200b829-0000-1100-01000-5caba2910000</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachments/"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">15547652145</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"YOUR READING PARAMTER1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"YOUR READING PARAMTER2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-29"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"patient_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"days_before"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your organisation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10-2017-08-29-yourorganisation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"231d7f988-8fa2-7a08-dc0f-d82150868cb1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAdLAtcJUfAAAAAA2AAAAA=="</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/colls/hBRsFALAtcJU=/docs/hsBRFALAtcJUfAAAdAAAAAAA==/"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">00200b829-0000-1100-01000-5caba2910000</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachments/"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">15547521645</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"readings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMTER1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMTER2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-28"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"patient_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"days_before"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your organisation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-2017-08-28-yourorganisation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"231d7f988-8fa2-7a08-dc0f-d82150868cb1"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAdLAtcJUfAAAAAAQAR2AAAAA=="</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/colls/hBHnRsFALAtcJU=/docs/hsBRFALAtcJUfAAAdAAAAAAA==/"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">00200b829-0000-1100-01011100-5caba291011000</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachments/"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">155475211145</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMTER1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMTER2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-28"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"patient_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"days_before"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your organisation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-2017-08-28-yourorganisation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"231d7f988-8fa2-7a08-dc0f-d82d150868cb1"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAdLAtcJUfAAAAfAAA2AAAAA=="</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/dcolls/hBRsFALAtcJU=/docs/hsBRFALAtcJUfAAAdAAAAAAA==/"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">00200b829-0000-d1100-01000-5caba2910000</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachments/"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">155471152145</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Where YOUR READING PARAMETERS is replaced with your organisation&#39;s specific reading parameters.</p>
+</blockquote>
+
+<p>This endpoint retrieves all readings.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET http://51.140.9.200/patients</code></p>
+<h3 id='return-object-5'>Return Object</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patients</td>
+<td>An array of patient reading objects</td>
+</tr>
+</tbody></table>
+<h3 id='patient-reading-object'>Patient Reading Object</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>A patients unique identifier.</td>
+</tr>
+<tr>
+<td>readings</td>
+<td>a list of reading objects</td>
+</tr>
+</tbody></table>
+<h3 id='reading-object'>Reading Object</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patient_id</td>
+<td>A patients unique identifier.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>The date of the reading in YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>unique_key</td>
+<td>A concatenation of the patient_id, date and organisation</td>
+</tr>
+<tr>
+<td>days_before</td>
+<td>The number of days between this reading and the given patietns latest reading.</td>
+</tr>
+<tr>
+<td>id</td>
+<td>the database identifier of the reading</td>
+</tr>
+</tbody></table>
+
+<p>The reading object also includes keys and values specific to your organisation</p>
+
+<aside class="success">
+Remember to send your bearer token!
+</aside>
+<h2 id='get-all-readings-within-a-given-date-range'>Get All Readings Within a given date range</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://51.140.9.200/readings?start=1&amp;end=0"</span>
+  -H <span class="s2">"Authorization: Bearer 123456789"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"patients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"readings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"YOUR READING PARAMTER1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"YOUR READING PARAMTER2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-28"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"days_before"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"patient_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your organisation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10-2017-08-28-yourorganisation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"231d7f988-8fa2-7a08-dc0f-d82150868cb1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAdLAtcJUfAAAAAA2AAAAA=="</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/colls/hBRsFALAtcJU=/docs/hsBRFALAtcJUfAAAdAAAAAAA==/"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">00200b829-0000-1100-01000-5caba2910000</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachments/"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">15547652145</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"YOUR READING PARAMTER1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"YOUR READING PARAMTER2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-29"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"patient_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"days_before"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your organisation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10-2017-08-29-yourorganisation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"231d7f988-8fa2-7a08-dc0f-d82150868cb1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAdLAtcJUfAAAAAA2AAAAA=="</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/colls/hBRsFALAtcJU=/docs/hsBRFALAtcJUfAAAdAAAAAAA==/"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">00200b829-0000-1100-01000-5caba2910000</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachments/"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">15547521645</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"readings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMTER1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMTER2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-28"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"patient_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"days_before"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your organisation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-2017-08-28-yourorganisation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"231d7f988-8fa2-7a08-dc0f-d82150868cb1"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAdLAtcJUfAAAAAAQAR2AAAAA=="</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/colls/hBHnRsFALAtcJU=/docs/hsBRFALAtcJUfAAAdAAAAAAA==/"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">00200b829-0000-1100-01011100-5caba291011000</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachments/"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">155475211145</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMTER1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMTER2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-28"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"patient_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"days_before"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your organisation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-2017-08-28-yourorganisation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"231d7f988-8fa2-7a08-dc0f-d82d150868cb1"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAdLAtcJUfAAAAfAAA2AAAAA=="</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/dcolls/hBRsFALAtcJU=/docs/hsBRFALAtcJUfAAAdAAAAAAA==/"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">00200b829-0000-d1100-01000-5caba2910000</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachments/"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">155471152145</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Where YOUR READING PARAMETERS is replaced with your organisation&#39;s specific reading parameters.</p>
+</blockquote>
+
+<p>This endpoint retrieves all readings within the given time range, where time is relative to the latest entered reading.</p>
+
+<p>This system works by calculating a days before for each reading, where days before is the given readings date subtracted from the most recent reading available of the given patients data.</p>
+
+<p>For example, if patient 10 has 3 readings</p>
+
+<table><thead>
+<tr>
+<th>ID</th>
+<th>Date</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td><code>12/12/1999</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>13/12/1999</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>14/12/1999</code></td>
+</tr>
+</tbody></table>
+
+<p>Then those readings would get days before values like this</p>
+
+<table><thead>
+<tr>
+<th>ID</th>
+<th>Date</th>
+<th>Days Before</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td><code>12/12/1999</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>13/12/1999</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>14/12/1999</code></td>
+<td>0</td>
+</tr>
+</tbody></table>
+
+<p>Thus, a query like  <code>GET http://51.140.9.200/readings?start=1&amp;end=0</code> would return readings <code>2</code> and <code>3</code> but not <code>1</code></p>
+
+<p>This allows for multiple patients to be compared on a time scale, even if they did not start collecting readings on the same date.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET http://51.140.9.200/readings?start=1&amp;end=0</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>start</td>
+<td>1000</td>
+<td>number of days before the latest reading to query</td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td>end</td>
+<td>0</td>
+<td>number of days after the latest reading to query</td>
+<td><strong>no</strong></td>
+</tr>
+</tbody></table>
+<h3 id='return-object-6'>Return Object</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patients</td>
+<td>An array of patient reading objects</td>
+</tr>
+</tbody></table>
+<h3 id='patient-reading-object-2'>Patient Reading Object</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>A patients unique identifier.</td>
+</tr>
+<tr>
+<td>readings</td>
+<td>a list of reading objects</td>
+</tr>
+</tbody></table>
+<h3 id='reading-object-2'>Reading Object</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patient_id</td>
+<td>A patients unique identifier.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>The date of the reading in YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>unique_key</td>
+<td>A concatenation of the patient_id, date and organisation</td>
+</tr>
+<tr>
+<td>days_before</td>
+<td>The number of days between this reading and the given patietns latest reading.</td>
+</tr>
+<tr>
+<td>id</td>
+<td>the database identifier of the reading</td>
+</tr>
+</tbody></table>
+
+<p>The reading object also includes keys and values specific to your organisation</p>
+
+<aside class="success">
+Remember to send your bearer token!
+</aside>
+<h2 id='get-all-readings-for-a-given-patient-parameter'>Get All Readings For a Given Patient Parameter</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://51.140.9.200/readings?column_name=YOUR_PATIENT_PARAMTER1&amp;breakpoint=100"</span>
+  -H <span class="s2">"Authorization: Bearer 123456789"</span>
+</code></pre>
+<blockquote>
+<p>Where YOUR_PATIENT_PARAMTER1 is replaced with a  given patient parameter</p>
+
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"yes_patients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"readings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"YOUR READING PARAMTER1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"YOUR READING PARAMTER2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-28"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"patient_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"days_before"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your organisation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10-2017-08-28-yourorganisation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"231d7f988-8fa2-7a08-dc0f-d82150868cb1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAdLAtcJUfAAAAAA2AAAAA=="</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/colls/hBRsFALAtcJU=/docs/hsBRFALAtcJUfAAAdAAAAAAA==/"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">00200b829-0000-1100-01000-5caba2910000</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachments/"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">15547652145</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"YOUR READING PARAMTER1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"YOUR READING PARAMTER2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-29"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"days_before"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"patient_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your organisation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10-2017-08-29-yourorganisation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"231d7f988-8fa2-7a08-dc0f-d82150868cb1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAdLAtcJUfAAAAAA2AAAAA=="</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/colls/hBRsFALAtcJU=/docs/hsBRFALAtcJUfAAAdAAAAAAA==/"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">00200b829-0000-1100-01000-5caba2910000</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachments/"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">15547521645</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"no_patients"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"readings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMTER1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMTER2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-28"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"patient_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"days_before"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your organisation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-2017-08-28-yourorganisation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"231d7f988-8fa2-7a08-dc0f-d82150868cb1"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAdLAtcJUfAAAAAAQAR2AAAAA=="</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/colls/hBHnRsFALAtcJU=/docs/hsBRFALAtcJUfAAAdAAAAAAA==/"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">00200b829-0000-1100-01011100-5caba291011000</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachments/"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">155475211145</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMTER1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMTER2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-28"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"patient_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"days_before"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"organisation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your organisation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"unique_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-2017-08-28-yourorganisation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"231d7f988-8fa2-7a08-dc0f-d82d150868cb1"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_rid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hBRFAdLAtcJUfAAAAfAAA2AAAAA=="</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbs/hBRFAA==/dcolls/hBRsFALAtcJU=/docs/hsBRFALAtcJUfAAAdAAAAAAA==/"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">00200b829-0000-d1100-01000-5caba2910000</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_attachments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachments/"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">155471152145</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Where YOUR READING PARAMETERS is replaced with your organisation&#39;s specific reading parameters.</p>
+</blockquote>
+
+<p>This endpoint retrieves all readings categorized by a patient parameter.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET http://51.140.9.200/readings?column_name=YOUR_PATIENT_PARAMTER1&amp;breakpoint=100</code></p>
+
+<blockquote>
+<p>Where YOUR_PATIENT_PARAMTER1 is replaced with a  given patient parameter</p>
+</blockquote>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>column_name</td>
+<td>null</td>
+<td>The patient paramter on which to divide the patient readings. This column name must be one returned by the <code>/columns</code> route</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr>
+<td>breakpoint</td>
+<td>1</td>
+<td>number which to divide patients on. Greater than or equal to breakpoint will place a patients readings in yes_patients, less than breakpoint will place the patients readings in no_patients</td>
+<td><strong>no</strong></td>
+</tr>
+</tbody></table>
+<h3 id='return-object-7'>Return Object</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>yes_patients</td>
+<td>An array of patient reading objects where the column_name value is greater than or equal to the breakpoint</td>
+</tr>
+<tr>
+<td>no_patients</td>
+<td>An array of patient reading objects where the column_name value is less than the breakpiont</td>
+</tr>
+</tbody></table>
+<h3 id='patient-reading-object-3'>Patient Reading Object</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>A patients unique identifier.</td>
+</tr>
+<tr>
+<td>readings</td>
+<td>a list of reading objects</td>
+</tr>
+</tbody></table>
+<h3 id='reading-object-3'>Reading Object</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patient_id</td>
+<td>A patients unique identifier.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>The date of the reading in YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>unique_key</td>
+<td>A concatenation of the patient_id, date and organisation</td>
+</tr>
+<tr>
+<td>id</td>
+<td>the database identifier of the reading</td>
+</tr>
+</tbody></table>
+
+<p>The reading object also includes keys and values specific to your organisation</p>
+
+<aside class="success">
+Remember to send your bearer token!
+</aside>
+<h2 id='import-a-list-of-readings'>Import a list of readings</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://51.140.9.200/readings"</span>
+  -d <span class="s1">'{"patients":[{"id":"10","readings":[{"YOUR_READING_PARAMETER1":"value","date":"2017-08-16"},]}'</span>
+  -X POST
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: Bearer 123456789"</span>
+</code></pre>
+<blockquote>
+<p>Where YOURR READING PARAMETERS is replaced with your organisation&#39;s specific patient parameters.</p>
+
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint uploads a json list of readings into the database</p>
+
+<p>The readings must be separated by patient, with each patient having its own list of readings.</p>
+
+<p>Each reading must consist of one or more reading parameters, and a date, which should be a string in YYYY-MM-DD format</p>
+
+<p>Readings must be unique across patient_id and date, no two readings can exist for the same patient on the same date.</p>
+
+<p>Readings which already exist on the given date for a given patient will be skipped on upload</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>POST http://51.140.9.200/readings</code></p>
+<h3 id='return-object-8'>Return Object</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td>success or error message</td>
+</tr>
+</tbody></table>
+<h3 id='query-body-format-3'>Query Body Format</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>patients</td>
+<td>none</td>
+<td>a list of objects containing a patient id and a list of corresponding readings.</td>
+<td><strong>yes</strong></td>
+</tr>
+</tbody></table>
+
+<p>The list of patients should be structured like This</p>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">{</span><span class="s2">"patients"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"readings"</span><span class="p">:[</span><span class="w">
+              </span><span class="p">{</span><span class="s2">"YOUR READING PARAMETER1"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"YOUR READING PARAMETER2"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YYYY-MM-DD"</span><span class="w">
+             </span><span class="p">},</span><span class="w">
+             </span><span class="p">{</span><span class="s2">"YOUR READING PARAMETER1"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMETER2"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YYYY-MM-DD"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"readings"</span><span class="p">:[</span><span class="w">
+              </span><span class="p">{</span><span class="s2">"YOUR READING PARAMETER1"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"YOUR READING PARAMETER2"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YYYY-MM-DD"</span><span class="w">
+             </span><span class="p">},</span><span class="w">
+             </span><span class="p">{</span><span class="s2">"YOUR READING PARAMETER1"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"YOUR READING PARAMETER2"</span><span class="p">:</span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YYYY-MM-DD"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Where YOUR READING PARATERs are replaced with your organisation&#39;s specefic reading paramters.</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>none</td>
+<td>a patient unique identifier</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr>
+<td>readings</td>
+<td>none</td>
+<td>a list of readings</td>
+<td><strong>yes</strong></td>
+</tr>
+</tbody></table>
+
+<p>And each reading should be structured like this</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date</td>
+<td>none</td>
+<td>a date string in the format &#39;YYYY-MM-DD&#39;</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr>
+<td>YOUR_READING_PARAMETER</td>
+<td>none</td>
+<td>replace YOUR_READING_PARAMETER with any string key. This can have any normal value, string, boolean, int etc. There can be an unlimited number of these.</td>
+<td><strong>no</strong></td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <p>The Peach API uses the following error codes:</p>
 
